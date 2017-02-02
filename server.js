@@ -1,10 +1,8 @@
 var express = require('express')
 var app = express();
 
-// handle request for the home page
-app.get('/', function (req, res) {
-  res.send('enter a timestamp in the url !');
-})
+// serve static files
+app.use("/", express.static("public"));
 
 // handle request when passing a param 
 app.get("/:date", function(req, res) {
