@@ -31,8 +31,19 @@ app.get("/:date", function(req, res) {
             ", " + dateObj.getUTCFullYear();
             
         jsonRes.natural = dateString;
+        
+    // check if the passed param is a natural language date
+    } else if (Date.parse(req.params.date)) {
+        
+        // assign the timestamp to unix property
+        jsonRes.unix = Date.parse(req.params.date) / 1000;
+        
+        //assign the natural date to natural property
+        jsonRes.natural = req.params.date;
     }
-    res.send(jsonRes);
+    
+    // return the response in JSON format
+    res.json(jsonRes);
 })
 
 
